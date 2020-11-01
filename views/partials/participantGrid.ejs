@@ -1,0 +1,7 @@
+﻿<div>
+    <% participants.forEach(participant => { %>
+        <a href="/participants/<%= participant.id %>">
+            PARTICIPANT - <%= participant.id %>
+        </a>
+    <% }) %>
+</div>

@@ -1,0 +1,63 @@
+﻿<h2 class="page-header">Search Tour</h2>
+<form action="/tours" method="GET">
+  <div class="form-row">
+    <div class="form-item">
+      <label>TourType</label>
+      <input type="text" name="tourType" value="<%= searchOptions.tourType %>">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-item">
+      <label>Start After</label>
+      <input type="date" name="startAfter" value="<%= searchOptions.startAfter %>">
+    </div>
+    <div class="form-item">
+      <label>Start Before</label>
+      <input type="date" name="startBefore" value="<%= searchOptions.startBefore %>">
+    </div>
+  </div>
+  <div class="form-row form-row-end">
+    <button class="btn btn-primary" type="submit">Search</button>
+  </div>
+</form>
+<br>
+
+<!--%- include('../partials/tourGrid', { tours: tours }) %-->
+
+<table>
+  <thead><tr>
+    <th>ID</th></th><th>Create Date</th><th>TourType</th><th>StartDate</th><th>Actuality</th><th></th>
+  </tr></thead>
+  <tbody>
+<% tours.forEach(tour => { %>
+  <tr>
+  <div class="author-row">
+    <td>
+      <a class="btn btn-primary" href="/tours/<%= tour.id %>"><%= tour.id %></a>
+    </td>
+    <td>
+      <div class="author-name"><%= tour.createDate.toDateString() %></div>
+    </td>
+    <td>
+      <div class="author-name"><%= tour.tourType %></div>
+    </td>
+    <td>
+      <div class="author-name"><%= tour.startDate.toDateString() %></div>
+    </td>
+    <td>
+      <div class="author-name"><%= tour.actual %></div>
+    </td>
+    <td>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="/tours/<%= tour.id %>/edit">Edit</a>
+        <%- include('../partials/deleteForm',
+        { url: `/tours/${tour.id}` }) %>
+      </div>
+    </td>
+  </div>
+  </tr>
+<% }) %>
+  </tbody>
+</table>
+<br>
+<a class="btn btn-primary" href="/tours/new">Add Tour</a>

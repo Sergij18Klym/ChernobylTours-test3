@@ -1,0 +1,42 @@
+﻿<a href="/drivers/">\\back</a>
+<table>
+  <caption><%= driver.id %></caption>
+  <thead><tr>
+    <th>Hired Date</th><th>Name</th><th>Phone</th><th>Rent Price</th>
+    <th>Bus (to view and drop)</th><th>Associated Tours</th>
+  </tr></thead>
+  <tbody>
+  <tr>
+    <td>
+      <div class="author-name"><%= driver.hireDate.toDateString() %></div>
+    </td>
+    <td>
+      <div class="author-name"><%= driver.name %></div>
+    </td>
+    <td>
+      <div class="author-name"><%= driver.phone %></div>
+    </td>
+    <td>
+      <div class="author-name"><%= driver.rentPrice %></div>
+    </td>
+    <td>
+      <div class="author-name"><%= driver.bus.numberPlate %></div>
+      <br>
+      <div class="author-name"><%= driver.bus.mark %></div>
+      <br>
+      <div class="author-name"><%= driver.bus.capacity %></div>
+    </td>
+    <td>
+      <% if (toursAssocCurrentDriver.length > 0) { %>
+        <%- include('../partials/tourGrid', { tours: toursAssocCurrentDriver }) %>
+      <% } else { %>
+        <div>~~EMPTY`~~</div>
+      <% } %>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<div class="btn-row">
+  <a class="btn btn-primary" href="/drivers/<%= driver.id %>/edit">Edit</a>
+  <%- include('../partials/deleteForm', { url: `/drivers/${driver.id}` }) %>
+</div>

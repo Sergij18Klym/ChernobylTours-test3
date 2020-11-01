@@ -1,0 +1,8 @@
+﻿<h2 class="page-header">Edit Driver</h2>
+<form action="/drivers/<%= driver.id %>?_method=PUT" method="POST">
+  <%- include('_form_fields') %>
+  <div class="form-row form-row-end btn-row">
+    <a class="btn btn-danger" href="/drivers/<%= driver.id %>">Cancel</a>
+    <button class="btn btn-primary" type="submit">Update</button>
+  </div>
+</form>

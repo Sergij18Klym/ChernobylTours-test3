@@ -1,0 +1,49 @@
+﻿<a href="/tours/">\\back</a>
+<table>
+  <caption><%= tour.id %></caption>
+  <thead><tr>
+    <th>Create Date</th><th>Tour Type</th><th>Start Date</th><th>Actuality</th>
+    <th>Driver</th><th>Tour's Participants</th><th>Guide</th>
+  </tr></thead>
+  <tbody>
+  <tr>
+    <td>
+      <div class="author-name"><%= tour.createDate.toDateString() %></div>
+    </td>
+    <td>
+      <div class="author-name"><%= tour.tourType %></div>
+    </td>
+    <td>
+      <div class="author-name"><%= tour.startDate.toDateString() %></div>
+    </td>
+    <td>
+      <div class="author-name"><%= tour.actual %></div>
+    </td>
+    <td>
+      <div class="author-name">
+        <a href="/drivers/<%= tour.driver.id %>"><%= tour.driver.name %></a>
+      </div>
+    </td>
+    <td>
+
+
+      <% if (toursParticipants.length > 0) { %>
+        <%- include('../partials/participantGrid', { participants: toursParticipants }) %>
+      <% } else { %>
+        <div>~~EMPTY`~~</div>
+      <% } %>
+
+
+    </td>
+    <td>
+      <div class="author-name">
+        <a href="/guides/<%= tour.guide.id %>"><%= tour.guide.name %></a>
+      </div>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<div class="btn-row">
+  <a class="btn btn-primary" href="/tours/<%= tour.id %>/edit">Edit</a>
+  <%- include('../partials/deleteForm', { url: `/tours/${tour.id}` }) %>
+</div>

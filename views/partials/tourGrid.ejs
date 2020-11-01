@@ -1,0 +1,8 @@
+﻿
+<div class="book-grid %= bookGridClass %">
+  <% tours.forEach(tour => { %>
+    <a href="/tours/<%= tour.id %>">
+      TOUR - <%= tour.id %>
+    </a>
+  <% }) %>
+</div>

@@ -1,0 +1,30 @@
+﻿<div class="form-row">
+  <div class="form-item">
+    <label>Name</label>
+    <input type="text" name="name" value="<%= customer.name %>">
+  </div>
+  <div class="form-item">
+    <label>Phone</label>
+    <input type="text" name="phone" value="<%= customer.phone %>">
+  </div>
+  <div class="form-item">
+    <label>Email</label>
+    <input type="text" name="email" value="<%= customer.email %>">
+  </div>
+  <div class="form-item">
+    <label>Passport</label>
+    <input type="text" name="passport" value="<%= customer.passport %>">
+  </div>
+  <div class="form-item">
+    <label>Citizenship</label>
+    <select name="citizenship">
+      <% if (customer.citizenship === "ukr") { %>
+        <option selected label="ukr" value="ukr">
+      <option label="foreign" value="foreign">
+        <% } else if (customer.citizenship === "foreign") { %>
+      <option label="ukr" value="ukr">
+      <option selected label="foreign" value="foreign">
+        <% } %>
+    </select>
+  </div>
+</div>

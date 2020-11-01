@@ -1,0 +1,55 @@
+﻿<h2 class="page-header">Search Drivers by Name</h2>
+<form action="/drivers" method="GET">
+  <div class="form-row">
+    <div class="form-item">
+      <label>Name</label>
+      <input type="text" name="name" value="<%= searchOptions.name %>">
+    </div>
+  </div>
+  <div class="form-row form-row-end">
+    <button class="btn btn-primary" type="submit">Search</button>
+  </div>
+</form>
+<br>
+
+<table>
+  <thead><tr>
+    <th>ID</th><th>Hired Date</th><th>Name</th><th>Phone</th><th>Rent Price</th>
+    <th>Bus (to view and drop)</th><th></th>
+  </tr></thead>
+  <tbody>
+<% drivers.forEach(driver => { %>
+<tr>
+  <div class="author-row">
+    <td>
+      <a class="btn btn-primary" href="/drivers/<%= driver.id %>"><%= driver.id %></a>
+    </td>
+    <td>
+      <div class="author-name"><%= driver.hireDate.toDateString() %></div>
+    </td>
+    <td>
+      <div class="author-name"><%= driver.name %></div>
+    </td>
+    <td>
+      <div class="author-name"><%= driver.phone %></div>
+    </td>
+    <td>
+      <div class="author-name"><%= driver.rentPrice %></div>
+    </td>
+    <td>
+      <div class="author-name"><%= driver.bus.numberPlate %></div>
+    </td>
+    <td>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/drivers/<%= driver.id %>/edit">Edit</a>
+      <%- include('../partials/deleteForm',
+                  { url: `/drivers/${driver.id}` }) %>
+    </div>
+    </td>
+  </div>
+</tr>
+<% }) %>
+  </tbody>
+</table>
+<br>
+<a class="btn btn-primary" href="/drivers/new">Add Driver</a>
